@@ -1,5 +1,5 @@
 // src/orders/use-cases/send-order-receipt.usecase.ts
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger} from '@nestjs/common';
 import { OrderService } from '../service/order.service';
 import { OrderReceiptService } from '../service/order-receipt-html.service';
 import { MailService } from '../../mail/service/mail.service';
@@ -19,7 +19,7 @@ export class SendOrderReceiptUseCase {
   ) {}
 
   async execute(orderId: number, sendPdf: boolean = true,tx?:Prisma.TransactionClient) {
-    const prisma = tx? tx : this.prisma
+    const prisma = tx || this.prisma
     const order = await this.orderService.getOrderForXML(orderId, prisma);
     const userEmail = order.user.email;
     if (sendPdf) {

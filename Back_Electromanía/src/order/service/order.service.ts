@@ -1,15 +1,14 @@
 import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateOrderDto } from '../dto/create-order.dto';
-import { UpdateOrderDto, UpdateOrderModel } from '../dto/update-order.dto';
+import { UpdateOrderModel } from '../dto/update-order.dto';
 import { PrismaService } from '../../prisma/service/prisma.service';
 import { AuthService } from '../../auth/service/auth.service';
 import { CartService } from '../../cart/service/cart.service';
-import { CartState, Order, Prisma } from '@prisma/client';
+import { Order, Prisma } from '@prisma/client';
 import { OrderMapper } from '../mapper/order.mapper';
 import { CartResponseModel } from '../../cart/models/cart.model';
 import { OrderResponseModel } from '../models/order-response.model';
 import { UserService } from '../../user/service/user.service';
-import { CartUpdateRequest } from '../../cart/models/CartUpdateRequest.model';
 import { CacheOrderKeys } from '../cache/cache-orders.keys';
 import { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
@@ -25,7 +24,7 @@ export class OrderService {
     readonly authService: AuthService,
     readonly cartService: CartService,
     readonly orderMapper: OrderMapper,
-    @Inject(CACHE_MANAGER) private cacheManager:Cache
+    @Inject(CACHE_MANAGER) private readonly cacheManager:Cache
   ) {}
   // ==================== Public Methods ====================
 
