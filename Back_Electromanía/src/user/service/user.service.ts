@@ -19,7 +19,7 @@ export class UserService {
     private readonly passwordService: PasswordService,
     @Inject(forwardRef(() => AuthService))
     private readonly authService: AuthService,
-    @Inject(CACHE_MANAGER) private cacheManager:Cache
+    @Inject(CACHE_MANAGER) private readonly cacheManager:Cache
   ) {}
   async findAll():Promise<User[]>{
     const cachedUserKey = 'allUsers';
