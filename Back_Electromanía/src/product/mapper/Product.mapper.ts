@@ -1,10 +1,7 @@
 import { ProductModel, ProductWithCategoriesAndImagesModel, ProductWithCategoriesModel } from "../model/Product.model";
 import { CreateProductRequestModel} from '../model/CreateProductRequest.model';
-import { Mapper } from "src/common/interfaces/Mapper.interface";
-
-import { $Enums, Prisma, Product, ProductImage, ProductCategory, Category } from '@prisma/client';
+import { Prisma, Product } from '@prisma/client';
 import { CartProductModel, CartProductWithImagesModel } from '../../cart/models/CardProduct.model';
-import { isInstance } from "class-validator";
 
 
 export type ProductWithImages = Prisma.ProductGetPayload<{
@@ -115,13 +112,6 @@ export class ProductMapper {
         return model;
     }
     toModelWithoutProductImages(entity: ProductWithoutImages): ProductModel {
-        const model = new ProductModel();
-        model.product_id = entity.product_id;
-        model.product_name = entity.product_name;
-        model.description = entity.description;
-        model.price = Number(entity.price);
-        model.stock = entity.stock_total-entity.stock_reserved;
-        model.state = entity.state;
-        return model;
+      return this.toModel(entity);
     }
 }
