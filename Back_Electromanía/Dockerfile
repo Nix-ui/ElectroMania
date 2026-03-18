@@ -14,6 +14,9 @@ COPY pnpm-lock.yaml package*.json ./
 COPY prisma ./prisma
 COPY prisma.config.ts ./
 
+RUN mkdir -p /usr/src/app/uploads/tmp && chown -R node:node /usr/src/app/uploads && mkdir -p /usr/src/app/uploads/products && chown -R node:node /usr/src/app/uploads/products
+
+
 RUN pnpm install --frozen-lockfile
 RUN pnpm prisma generate
 

@@ -14,9 +14,9 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-    - ./Back_Electromanía:/usr/src/app:Z
-    - /usr/src/app/node_modules
-    - uploads_data:/usr/src/app/uploads
+      - ./Back_Electromanía:/usr/src/app:Z
+      - /usr/src/app/node_modules
+      - ./Back_Electromanía/uploads:/usr/src/app/uploads:Z
     ports:
       - "3000:3000"
   frontend:
@@ -55,5 +55,4 @@ services:
 
 volumes:
   pg_data:
-  uploads_data:
   angular_cache:
