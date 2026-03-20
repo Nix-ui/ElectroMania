@@ -73,41 +73,29 @@ export class OrderMapper {
     }
     toOrderReceiptModel(entity:OrderForReceipt):OrderReceiptModel{
         let orderStatus;
-        switch(entity.status){
-            case 'PENDING':
-                orderStatus = 'Pendiente';
-                break;
-            case 'PAID':
-                orderStatus = 'Pagado';
-                break;
-            case 'CANCELED':
-                orderStatus = 'Cancelado';
-                break;
-            case "SHIPPED":
-                orderStatus = 'Enviado';
-                break;
-            case "DELIVERED":
-                orderStatus= 'Entregado';
-                break;
+        if (entity.status === 'PENDING') {
+            orderStatus = 'Pendiente';
+        } else if (entity.status === 'PAID') {
+            orderStatus = 'Pagado';
+        } else if (entity.status === 'CANCELED') {
+            orderStatus = 'Cancelado';
+        } else if (entity.status === 'SHIPPED') {
+            orderStatus = 'Enviado';
+        } else if (entity.status === 'DELIVERED') {
+            orderStatus = 'Entregado';
         }
         let paymentMethod;
         let paymentStatus;
         if(entity.payment){
-            switch(entity.payment.method){
-                case 'CASH':
-                    paymentMethod = 'Efectivo';
-                    break;
+            if (entity.payment.method === 'CASH') {
+                paymentMethod = 'Efectivo';
             }
-            switch(entity.payment.status){
-                case 'PENDING':
-                    paymentStatus = 'Pendiente';
-                    break;
-                case 'PAID':
-                    paymentStatus = 'Pagado';
-                    break;
-                case 'CANCELED':
-                    paymentStatus = 'Cancelado';
-                    break;
+            if (entity.payment.status === 'PENDING') {
+                paymentStatus = 'Pendiente';
+            } else if (entity.payment.status === 'PAID') {
+                paymentStatus = 'Pagado';
+            } else if (entity.payment.status === 'CANCELED') {
+                paymentStatus = 'Cancelado';
             }
         }
         const response:OrderReceiptModel = {

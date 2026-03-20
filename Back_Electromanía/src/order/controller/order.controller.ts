@@ -1,6 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Headers, UseGuards, Logger, Query, ParseIntPipe, Res, Req, UnauthorizedException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Logger, Query, ParseIntPipe, Res } from '@nestjs/common';
 import { OrderService } from '../service/order.service';
-import { CreateOrderDto } from '../dto/create-order.dto';
 import { UpdateOrderDto, UpdateOrderModel } from '../dto/update-order.dto';
 import { AuthGuard } from '../../auth/guards/auth.guard';
 import { CreateOrderByCartUseCase } from '../use-cases/create-order-by-cart.usecase';
@@ -8,7 +7,7 @@ import { AuthService } from '../../auth/service/auth.service';
 import { ConfirmPaymentForOrderUseCase } from '../use-cases/confirm-payment-for-order.use-case';
 import { UpdateOrderStatusUseCase } from '../use-cases/update-order-status.use-case';
 import { GenerateOrderXmlUseCase } from '../use-cases/generate-order-xml.usecase';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { SendOrderReceiptUseCase } from '../use-cases/send-order-receipt.use-case';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { UserJwtPayloadModel } from '../../auth/models/user-jwt-payload.model';

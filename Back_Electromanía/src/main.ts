@@ -8,8 +8,8 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'node:path';
 import * as cookieParser from 'cookie-parser';
 
-
-async function bootstrap() {
+/* eslint-disable unicorn/prefer-top-level-await */
+void (async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe({
@@ -19,18 +19,18 @@ async function bootstrap() {
     prefix: '/uploads',
   });
   const config = new DocumentBuilder()
-  .setTitle('Electromania')
-  .setDescription('API de Compra y Venta de Productos Electrónicos')
-  .setVersion('1.0')
-  .addBearerAuth(
-    {
-      type: 'http',
-      scheme: 'bearer',
-      bearerFormat: 'JWT',
-    },
-    'JWT',
-  )
-  .build();
+    .setTitle('Electromania')
+    .setDescription('API de Compra y Venta de Productos Electrónicos')
+    .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'JWT',
+    )
+    .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document)
   app.use(
@@ -48,8 +48,11 @@ async function bootstrap() {
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
-  });  
-  await app.listen(process.env.PORT ?? 3000);
-}
+  });
 
-bootstrap();
+  await app.listen(process.env.PORT ?? 3000);
+})().catch((error: unknown) => {
+  console.error('Failed to bootstrap application', error);
+  process.exit(1);
+});
+/* eslint-enable unicorn/prefer-top-level-await */

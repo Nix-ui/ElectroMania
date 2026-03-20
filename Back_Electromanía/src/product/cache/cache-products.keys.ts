@@ -1,4 +1,4 @@
 export class CacheProductKeys {
-    static allProducts = 'allProducts';
-    static pageProducts = 'pageProducts';
+    static readonly allProducts = 'allProducts';
+    static readonly pageProducts = 'pageProducts';
 }

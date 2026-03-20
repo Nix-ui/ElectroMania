@@ -1,6 +1,6 @@
 export class CacheOrderKeys{
-    static allOrders = 'orders';
-    static ORDER = 'order';
+    static readonly allOrders = 'orders';
+    static readonly ORDER = 'order';
     static orderByID(orderId: number){
         return `order-${orderId}`;
     }

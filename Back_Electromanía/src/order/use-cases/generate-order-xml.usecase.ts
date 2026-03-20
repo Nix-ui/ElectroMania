@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { OrderService } from "../service/order.service";
 import { OrderReceiptService } from "../service/order-receipt-html.service";
 import { PrismaService } from '../../prisma/service/prisma.service';
@@ -14,7 +14,7 @@ export class GenerateOrderXmlUseCase {
   ){}
 
   async execute(orderId:number,tx?:Prisma.TransactionClient){
-    const prisma = tx? tx : this.prisma
+    const prisma = tx || this.prisma
     const order = await this.orderService.getOrderForXML(orderId,prisma);
     const html = this.html.generateReceiptHtml(order);
     return {

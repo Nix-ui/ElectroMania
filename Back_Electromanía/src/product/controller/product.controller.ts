@@ -1,7 +1,6 @@
-import { Body, Controller, Get, Param, Post, Query, UseGuards, Delete, Put, UploadedFile, UseInterceptors, ParseFilePipe, FileTypeValidator, Logger } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards, Delete, Put, UploadedFile, UseInterceptors, Logger } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ProductService } from '../service/product.service';
-import { ProductModule } from '../product.module';
 import { CreateProductRequestModel } from '../model/CreateProductRequest.model';
 import { RegisterProductImageRequestModel } from '../model/RegisterProductImageRequest.model';
 import { PageProductResponseModel } from '../model/PageProductResponse.model';

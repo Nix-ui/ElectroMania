@@ -10,7 +10,7 @@ export class PaymentService {
   ) {}
 
   async registerPayment(orderId: number,dto:RegisterPaymentDto, tx?:Prisma.TransactionClient){
-    const prisma = tx? tx : this.prisma
+    const prisma = tx || this.prisma
     return await prisma.payment.create({
       data: {
         amount: dto.amount,

@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { CartService } from '../service/cart.service';
 import { JwtService } from '@nestjs/jwt';
-import Configuration from "../../config/Configuration";
 
 @Injectable()
 export class CreateCartUseCase {
