@@ -109,6 +109,7 @@ describe('ProductService (unit)', () => {
   });
 
   it('should delete a product', async () => {
+    await service.deleteProduct(1);
     expect(prismaMock.product.delete).toHaveBeenCalledWith({
       where: { product_id: 1 },
     });
