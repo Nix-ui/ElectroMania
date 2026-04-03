@@ -11,7 +11,7 @@ export default defineConfig({
     setupFiles: ['./test/vitest-setup.ts'], // Para los metadatos de Nest
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'json', 'html'],
+      reporter: ['text', 'json', 'html', "lcov"],
     },
   },
   plugins: [
